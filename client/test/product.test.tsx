@@ -1,8 +1,10 @@
 import { render, fireEvent } from "@testing-library/react";
 import Product from "../pages/product";
+import { ProductMock } from "../mocks";
+import Layout from "../components/Layout";
 
 test("should be able to increase and decrease product quantity", async () => {
-  const { getByText, getByTitle } = render(<Product />);
+  const { getByText, getByTitle } = render(<Layout><Product product={ProductMock} /></Layout>);
 
   const increaseQuantity = getByText("+");
 
@@ -19,7 +21,7 @@ test("should be able to increase and decrease product quantity", async () => {
 });
 
 test("should be able to add items to the basket", async () => {
-  const { getByText, getByTitle } = render(<Product />);
+  const { getByText, getByTitle } = render(<Layout><Product product={ProductMock} /></Layout>);
 
   const increaseQuantity = getByText("+");
 

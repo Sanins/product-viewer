@@ -51,7 +51,7 @@ export default function Product({ product }: ProductProps) {
           <button onClick={decrementQuantity} disabled={quantity === 1}>
             -
           </button>
-          <p>quantity is here {quantity}</p>
+          <p title="Current quantity">{quantity}</p>
           <button onClick={incrementQuantity}>+</button>
         </div>
         <button onClick={handleAddToCart} disabled={AddProductDisabled()}>
