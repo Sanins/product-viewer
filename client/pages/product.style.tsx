@@ -79,3 +79,5 @@ export const TitleContainer = styled.div`
 export const ImageContainer = styled.div`
   padding: 5%;
 `;
+
+export const ErrorContainer = styled.div``;

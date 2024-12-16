@@ -21,14 +21,14 @@ const Header = () => {
           width={'150px'}
           height={'30px'}
           priority />
-        <a onClick={toggleBasket}>
+        <Styled.Toggle onClick={toggleBasket}>
           <Image alt="Basket Icon" src="/basket.svg"
             width={'30px'}
             height={'30px'}
             priority />
 
-          {totalQuantity > 0 && <p title="Basket items">{totalQuantity}</p>}
-        </a>
+          {totalQuantity > 0 && <Styled.TotalQuantity title="Basket items">{totalQuantity}</Styled.TotalQuantity>}
+        </Styled.Toggle>
       </Styled.Wrapper>
 
       {isBasketOpen && <Basket basketItems={basketItems} />}

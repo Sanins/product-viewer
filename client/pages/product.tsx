@@ -10,11 +10,30 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
   const addItem = useBasketStore((state) => state.addItem);
+  const basketItems = useBasketStore((state) => state.items);
   const [quantity, setQuantity] = useState<number>(1);
+  const [error, setError] = useState<string | null>(null);
 
   const handleAddToCart = () => {
-    addItem(product, quantity);
-    setQuantity(1);
+    const currentInBasket = basketItems.reduce((acc, item) => {
+      if (item.id === product.id) {
+        return acc + item.quantity;
+      }
+      return acc;
+    }, 0);
+
+    const availableStock = product.quantity - currentInBasket;
+
+    if (quantity <= availableStock) {
+      addItem(product, quantity);
+      setQuantity(1);
+    } else {
+      if (availableStock === 0) {
+        setError('Sorry, this item is out of stock');
+      } else {
+        setError(`Sorry, only ${availableStock} items left in stock`);
+      }
+    }
   };
 
   const incrementQuantity = () => {
@@ -24,14 +43,11 @@ export default function Product({ product }: ProductProps) {
   const MIN_QUANTITY = 1;
 
   const decrementQuantity = () => {
+    if (error) {
+      setError(null);
+    }
     setQuantity((prev) => Math.max(MIN_QUANTITY, prev - 1)); // Ensures quantity doesn't go below MIN_QUANTITY
   };
-
-  const AddProductDisabled = () => {
-    return false; // Placeholder
-  };
-
-  console.log(product);
 
   return (
     <div>
@@ -86,10 +102,14 @@ export default function Product({ product }: ProductProps) {
           </Styled.QuantityDataContainer>
         </Styled.PriceQtyContainer>
         <Styled.BtnContainer>
-          <Button onClick={handleAddToCart} disabled={AddProductDisabled()}>
+          <Button onClick={handleAddToCart}>
             Add to cart
           </Button>
         </Styled.BtnContainer>
+        {error && <Styled.ErrorContainer>
+          <p>{error}</p>
+        </Styled.ErrorContainer>
+        }
       </Styled.QtyContainer>
       <Styled.DescriptionWrapper>
         <h3>Description</h3>
@@ -146,6 +166,7 @@ export async function getStaticProps() {
               description
               price
               power
+              quantity
               img_url
               brand
               weight
