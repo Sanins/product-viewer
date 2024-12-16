@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import * as Styled from './Header.style';
 import Basket from './Basket';
 import useBasketStore from '../store/useBasketStore';
@@ -14,17 +15,24 @@ const Header = () => {
   const totalQuantity = basketItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <header>
+    <Styled.Header>
       <Styled.Wrapper>
-        <img src="/octopus-logo.svg" alt="Octopus Energy Logo" />
-        <button onClick={toggleBasket}>
-          <img src="/basket.svg" alt="Basket Icon" />
+        <Image alt="Octopus Energy Logo" src="/octopus-logo.svg"
+          width={'150px'}
+          height={'30px'}
+          priority />
+        <a onClick={toggleBasket}>
+          <Image alt="Basket Icon" src="/basket.svg"
+            width={'30px'}
+            height={'30px'}
+            priority />
+
           {totalQuantity > 0 && <p title="Basket items">{totalQuantity}</p>}
-        </button>
+        </a>
       </Styled.Wrapper>
 
       {isBasketOpen && <Basket basketItems={basketItems} />}
-    </header>
+    </Styled.Header>
   );
 };
 

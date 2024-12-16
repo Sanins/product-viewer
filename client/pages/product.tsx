@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import type { Product } from '../types';
+import * as Styled from './product.style';
 import useBasketStore from '../store/useBasketStore';
 import { useState } from 'react';
+import Button from '../components/Button';
 interface ProductProps {
   product: Product;
 }
@@ -29,45 +31,101 @@ export default function Product({ product }: ProductProps) {
     return false; // Placeholder
   };
 
+  console.log(product);
+
   return (
     <div>
-      <div>
+      <Styled.ImageContainer>
         <Image
           src={product.img_url}
           alt={product.name}
-          width={300}
-          height={300}
+          layout="responsive"
+          width={100}
+          height={100}
+          style={{
+            objectFit: "cover",
+            borderRadius: "15px",
+          }}
           priority
         />
-      </div>
-      <div>
+      </Styled.ImageContainer>
+      <Styled.TitleContainer>
         <h1>{product.name}</h1>
-        <p>{product.power} // Packet of 4</p>
-      </div>
-      <div>
-        <p>£{product.price}</p>
-        <div>
-          <p>Qty</p>
-          <button onClick={decrementQuantity} disabled={quantity === 1}>
-            -
-          </button>
-          <p title="Current quantity">{quantity}</p>
-          <button onClick={incrementQuantity}>+</button>
-        </div>
-        <button onClick={handleAddToCart} disabled={AddProductDisabled()}>
-          Add to cart
-        </button>
-      </div>
-      <h3>Description</h3>
-      <p>{product.description}</p>
-      <h3>Specifications</h3>
-      <ul>
-        <li>Brand: {product.brand}</li>
-        <li>Item weight(g): {product.weight}</li>
-        <li>
-          Dimensions (cm): {product.height} x {product.width} x {product.length}
-        </li>
-      </ul>
+        <Styled.PowerTxt>{product.power} // Packet of 4</Styled.PowerTxt>
+      </Styled.TitleContainer>
+      <Styled.QtyContainer>
+        <Styled.PriceQtyContainer>
+          <div>
+            <Styled.PriceTxt>£{product.price}</Styled.PriceTxt>
+          </div>
+          <Styled.QuantityDataContainer>
+            <div>
+              <Styled.QuantityTxt>Qty</Styled.QuantityTxt>
+            </div>
+            <Styled.QuantityCtrlContainer>
+              <Styled.QuantitybtnContainer>
+                <Button onClick={decrementQuantity} style={{
+                  width: '30px',
+                  height: '30px',
+                  padding: '0px',
+                  borderRadius: '5px',
+                }} disabled={quantity === 1}>
+                  -
+                </Button>
+              </Styled.QuantitybtnContainer>
+              <Styled.QtyTxt title="Current quantity">{quantity}</Styled.QtyTxt>
+              <Styled.QuantitybtnContainer>
+                <Button onClick={incrementQuantity} style={{
+                  width: '30px',
+                  height: '30px',
+                  padding: '0px',
+                  borderRadius: '5px',
+                }}>+</Button>
+              </Styled.QuantitybtnContainer>
+            </Styled.QuantityCtrlContainer>
+          </Styled.QuantityDataContainer>
+        </Styled.PriceQtyContainer>
+        <Styled.BtnContainer>
+          <Button onClick={handleAddToCart} disabled={AddProductDisabled()}>
+            Add to cart
+          </Button>
+        </Styled.BtnContainer>
+      </Styled.QtyContainer>
+      <Styled.DescriptionWrapper>
+        <h3>Description</h3>
+        <p>{product.description}</p>
+      </Styled.DescriptionWrapper>
+      <Styled.SpecWrapper>
+        <h3>Specifications</h3>
+        <Styled.SpecList>
+          <Styled.SpecListItem>
+            <Styled.SpecTitle>Brand</Styled.SpecTitle>
+            <Styled.SpecValue>{product.brand}</Styled.SpecValue>
+          </Styled.SpecListItem>
+          <Styled.SpecListItem>
+            <Styled.SpecTitle>Item weight (g)</Styled.SpecTitle>
+            <Styled.SpecValue>{product.weight}</Styled.SpecValue>
+          </Styled.SpecListItem>
+          <Styled.SpecListItem>
+            <Styled.SpecTitle>Dimensions (cm)</Styled.SpecTitle>
+            <Styled.SpecValue>
+              {product.height} x {product.width} x {product.length}
+            </Styled.SpecValue>
+          </Styled.SpecListItem>
+          <Styled.SpecListItem>
+            <Styled.SpecTitle>Item Modal number</Styled.SpecTitle>
+            <Styled.SpecValue>
+              {product.model_code}
+            </Styled.SpecValue>
+          </Styled.SpecListItem>
+          <Styled.SpecListItem>
+            <Styled.SpecTitle>Colour</Styled.SpecTitle>
+            <Styled.SpecValue>
+              {product.colour}
+            </Styled.SpecValue>
+          </Styled.SpecListItem>
+        </Styled.SpecList>
+      </Styled.SpecWrapper>
     </div>
   );
 }
@@ -94,6 +152,8 @@ export async function getStaticProps() {
               height
               width
               length
+              model_code
+              colour
             }
           }
         `,

@@ -6,6 +6,7 @@ export const theme = {
         purpleHaze: '#a49fc8',
         siphon: '#100030',
         sohoLights: '#f050f8',
+        mauve: '#FA98FF',
     },
     breakpoints: {
       mobile: '480px',
