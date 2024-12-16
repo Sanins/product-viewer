@@ -1,10 +1,34 @@
 import Image from 'next/image';
 import type { Product } from '../types';
+import useBasketStore from '../store/useBasketStore';
+import { useState } from 'react';
 interface ProductProps {
   product: Product;
 }
 
 export default function Product({ product }: ProductProps) {
+  const addItem = useBasketStore((state) => state.addItem);
+  const [quantity, setQuantity] = useState<number>(1);
+
+  const handleAddToCart = () => {
+    addItem(product, quantity);
+    setQuantity(1);
+  };
+
+  const incrementQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const MIN_QUANTITY = 1;
+
+  const decrementQuantity = () => {
+    setQuantity((prev) => Math.max(MIN_QUANTITY, prev - 1)); // Ensures quantity doesn't go below MIN_QUANTITY
+  };
+
+  const AddProductDisabled = () => {
+    return false; // Placeholder
+  };
+
   return (
     <div>
       <div>
@@ -24,18 +48,25 @@ export default function Product({ product }: ProductProps) {
         <p>£{product.price}</p>
         <div>
           <p>Qty</p>
-          <button>-</button>
-          <button>+</button>
+          <button onClick={decrementQuantity} disabled={quantity === 1}>
+            -
+          </button>
+          <p>quantity is here {quantity}</p>
+          <button onClick={incrementQuantity}>+</button>
         </div>
-        <button>Add to cart</button>
+        <button onClick={handleAddToCart} disabled={AddProductDisabled()}>
+          Add to cart
+        </button>
       </div>
       <h3>Description</h3>
       <p>{product.description}</p>
       <h3>Specifications</h3>
       <ul>
         <li>Brand: {product.brand}</li>
-        <li>Item weight(g) {product.weight}</li>
-        <li>Dimensions (cm) {product.height} {product.width} {product.length}</li>
+        <li>Item weight(g): {product.weight}</li>
+        <li>
+          Dimensions (cm): {product.height} x {product.width} x {product.length}
+        </li>
       </ul>
     </div>
   );
