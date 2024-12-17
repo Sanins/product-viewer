@@ -78,6 +78,20 @@ export const TitleContainer = styled.div`
 
 export const ImageContainer = styled.div`
   padding: 5%;
+  max-width: 500px;
+  justify-self: center;
+   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 50%;
+    padding: 0;
+  }
 `;
 
 export const ErrorContainer = styled.div``;
+
+export const QtyWrapper = styled.div`
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: flex;
+    padding: 5%;
+    justify-content: space-around;
+  }
+`;

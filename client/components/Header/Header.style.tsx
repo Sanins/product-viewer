@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 
 export const Icon = styled.img`
   width: 40%;
+  max-width: 20rem;
 `;
 
 export const Header = styled.header`

@@ -3,7 +3,7 @@ import type { Product } from '../types';
 import * as Styled from './product.style';
 import useBasketStore from '../store/useBasketStore';
 import { useState } from 'react';
-import Button from '../components/Button';
+import Button from '../components/Button/Button';
 interface ProductProps {
   product: Product;
 }
@@ -51,66 +51,70 @@ export default function Product({ product }: ProductProps) {
 
   return (
     <div>
-      <Styled.ImageContainer>
-        <Image
-          src={product.img_url}
-          alt={product.name}
-          layout="responsive"
-          width={100}
-          height={100}
-          style={{
-            objectFit: "cover",
-            borderRadius: "15px",
-          }}
-          priority
-        />
-      </Styled.ImageContainer>
-      <Styled.TitleContainer>
-        <h1>{product.name}</h1>
-        <Styled.PowerTxt>{product.power} // Packet of 4</Styled.PowerTxt>
-      </Styled.TitleContainer>
-      <Styled.QtyContainer>
-        <Styled.PriceQtyContainer>
-          <div>
-            <Styled.PriceTxt>£{product.price}</Styled.PriceTxt>
-          </div>
-          <Styled.QuantityDataContainer>
-            <div>
-              <Styled.QuantityTxt>Qty</Styled.QuantityTxt>
-            </div>
-            <Styled.QuantityCtrlContainer>
-              <Styled.QuantitybtnContainer>
-                <Button onClick={decrementQuantity} style={{
-                  width: '30px',
-                  height: '30px',
-                  padding: '0px',
-                  borderRadius: '5px',
-                }} disabled={quantity === 1}>
-                  -
-                </Button>
-              </Styled.QuantitybtnContainer>
-              <Styled.QtyTxt title="Current quantity">{quantity}</Styled.QtyTxt>
-              <Styled.QuantitybtnContainer>
-                <Button onClick={incrementQuantity} style={{
-                  width: '30px',
-                  height: '30px',
-                  padding: '0px',
-                  borderRadius: '5px',
-                }}>+</Button>
-              </Styled.QuantitybtnContainer>
-            </Styled.QuantityCtrlContainer>
-          </Styled.QuantityDataContainer>
-        </Styled.PriceQtyContainer>
-        <Styled.BtnContainer>
-          <Button onClick={handleAddToCart}>
-            Add to cart
-          </Button>
-        </Styled.BtnContainer>
-        {error && <Styled.ErrorContainer>
-          <p>{error}</p>
-        </Styled.ErrorContainer>
-        }
-      </Styled.QtyContainer>
+      <Styled.QtyWrapper>
+        <Styled.ImageContainer>
+          <Image
+            src={product.img_url}
+            alt={product.name}
+            layout="responsive"
+            width={100}
+            height={100}
+            style={{
+              objectFit: "cover",
+              borderRadius: "15px",
+            }}
+            priority
+          />
+        </Styled.ImageContainer>
+        <div>
+          <Styled.TitleContainer>
+            <h1>{product.name}</h1>
+            <Styled.PowerTxt>{product.power} // Packet of 4</Styled.PowerTxt>
+          </Styled.TitleContainer>
+          <Styled.QtyContainer>
+            <Styled.PriceQtyContainer>
+              <div>
+                <Styled.PriceTxt>£{product.price}</Styled.PriceTxt>
+              </div>
+              <Styled.QuantityDataContainer>
+                <div>
+                  <Styled.QuantityTxt>Qty</Styled.QuantityTxt>
+                </div>
+                <Styled.QuantityCtrlContainer>
+                  <Styled.QuantitybtnContainer>
+                    <Button onClick={decrementQuantity} style={{
+                      width: '30px',
+                      height: '30px',
+                      padding: '0px',
+                      borderRadius: '5px',
+                    }} disabled={quantity === 1}>
+                      -
+                    </Button>
+                  </Styled.QuantitybtnContainer>
+                  <Styled.QtyTxt title="Current quantity">{quantity}</Styled.QtyTxt>
+                  <Styled.QuantitybtnContainer>
+                    <Button onClick={incrementQuantity} style={{
+                      width: '30px',
+                      height: '30px',
+                      padding: '0px',
+                      borderRadius: '5px',
+                    }}>+</Button>
+                  </Styled.QuantitybtnContainer>
+                </Styled.QuantityCtrlContainer>
+              </Styled.QuantityDataContainer>
+            </Styled.PriceQtyContainer>
+            <Styled.BtnContainer>
+              <Button onClick={handleAddToCart}>
+                Add to cart
+              </Button>
+            </Styled.BtnContainer>
+            {error && <Styled.ErrorContainer>
+              <p>{error}</p>
+            </Styled.ErrorContainer>
+            }
+          </Styled.QtyContainer>
+        </div>
+      </Styled.QtyWrapper>
       <Styled.DescriptionWrapper>
         <h3>Description</h3>
         <p>{product.description}</p>

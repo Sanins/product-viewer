@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import * as Styled from './Header.style';
-import Basket from './Basket';
-import useBasketStore from '../store/useBasketStore';
+import Basket from '../Basket/Basket';
+import useBasketStore from '../../store/useBasketStore';
 
 const Header = () => {
   const [isBasketOpen, setIsBasketOpen] = useState(false);
@@ -17,10 +17,7 @@ const Header = () => {
   return (
     <Styled.Header>
       <Styled.Wrapper>
-        <Image alt="Octopus Energy Logo" src="/octopus-logo.svg"
-          width={'150px'}
-          height={'30px'}
-          priority />
+        <Styled.Icon alt="Octopus Energy Logo" src="/octopus-logo.svg" />
         <Styled.Toggle onClick={toggleBasket}>
           <Image alt="Basket Icon" src="/basket.svg"
             width={'30px'}
