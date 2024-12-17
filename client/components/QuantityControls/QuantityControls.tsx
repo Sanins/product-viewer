@@ -14,8 +14,10 @@ export const QuantityControls = ({ product, onAddToCart }: QuantityControlsProps
   const [error, setError] = useState<string | null>(null);
 
   const incrementQuantity = () => {
-    setQuantity((prev) => prev + 1);
-    if (error) setError(null);
+    if (product.quantity > 0) {
+      setQuantity((prev) => prev + 1);
+      if (error) setError(null);
+    }
   };
 
   const decrementQuantity = () => {
@@ -24,8 +26,12 @@ export const QuantityControls = ({ product, onAddToCart }: QuantityControlsProps
   };
 
   const handleAddToCart = () => {
-    onAddToCart(quantity, setError);
-    if (!error) setQuantity(1); // Reset quantity only if there’s no error
+    if (product.quantity === 0) {
+      setError('Sorry, this item is out of stock');
+    } else {
+      onAddToCart(quantity, setError);
+      if (!error) setQuantity(1); // Reset quantity only if there’s no error
+    }
   };
 
   return (
@@ -53,10 +59,11 @@ export const QuantityControls = ({ product, onAddToCart }: QuantityControlsProps
                 -
               </Button>
             </Styled.QuantitybtnContainer>
-            <Styled.QtyTxt>{quantity}</Styled.QtyTxt>
+            <Styled.QtyTxt title='Current quantity'>{quantity}</Styled.QtyTxt>
             <Styled.QuantitybtnContainer>
               <Button
                 onClick={incrementQuantity}
+                disabled={quantity === 0}
                 style={{
                   width: '30px',
                   height: '30px',
@@ -77,7 +84,7 @@ export const QuantityControls = ({ product, onAddToCart }: QuantityControlsProps
 
       {error && (
         <Styled.ErrorContainer>
-          <p>{error}</p>
+          <p data-testid='error-message'>{error}</p>
         </Styled.ErrorContainer>
       )}
     </Styled.QtyContainer>

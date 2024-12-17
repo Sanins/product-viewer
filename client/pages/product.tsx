@@ -20,10 +20,13 @@ export default function Product({ product }: ProductProps) {
     const availableStock = product.quantity - currentInBasket;
 
     if (quantity <= availableStock) {
+      setError(null);
       addItem(product, quantity);
     } else {
       setError(
-        availableStock === 0 ? 'Sorry, this item is out of stock' : `Sorry, only ${availableStock} items left in stock`
+        availableStock === 0
+          ? 'Sorry, this item is out of stock'
+          : `Sorry, only ${availableStock} ${availableStock === 1 ? 'item' : 'items'} left in stock`
       );
     }
   };

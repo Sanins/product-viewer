@@ -11,7 +11,7 @@ interface BasketProps {
 
 const Basket = ({ basketItems, isBasketVisable, onClose }: BasketProps) => {
   return (
-    <Styled.BasketWrapper $isBasketVisable={isBasketVisable}>
+    <Styled.BasketWrapper $isBasketVisable={isBasketVisable} data-testid="basket-wrapper">
       <Styled.BasketHeader>
         <h2>Your Basket</h2>
       </Styled.BasketHeader>
