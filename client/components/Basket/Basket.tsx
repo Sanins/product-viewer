@@ -1,6 +1,7 @@
 import React from 'react';
 import { Product } from '../../types';
 import * as Styled from './Basket.style';
+import { formatPrice } from '../../utils/utils';
 
 interface BasketProps {
   basketItems: Product[];
@@ -26,9 +27,9 @@ const Basket = ({ basketItems, isBasketVisable, onClose }: BasketProps) => {
               <Styled.BasketItem key={item.id}>
                 <div>
                   <h3>{item.name}</h3>
-                  <p>Price: £{item.price.toFixed(2)}</p>
+                  <p>Price: £{formatPrice(item.price)}</p>
                   <p>Quantity: {item.quantity}</p>
-                  <p>Total: £{(item.price * item.quantity).toFixed(2)}</p>
+                  <p>Total: £{formatPrice((item.price * item.quantity))}</p>
                 </div>
               </Styled.BasketItem>
             ))}
