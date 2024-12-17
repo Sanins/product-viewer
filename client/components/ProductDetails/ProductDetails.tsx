@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import { Product } from "../../types";
 import * as Styled from './ProductDetails.style';
 

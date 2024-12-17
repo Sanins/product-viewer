@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import type { Product } from '../types';
 import * as Styled from './product.style';
@@ -109,7 +109,7 @@ export async function getStaticProps() {
         product: json.data.Product,
       },
     };
-  } catch (error) {
+  } catch {
     return { notFound: true }; // Show a 404 page on error
   }
 }
