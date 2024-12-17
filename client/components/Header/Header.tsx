@@ -28,7 +28,9 @@ const Header = () => {
         </Styled.Toggle>
       </Styled.Wrapper>
 
-      {isBasketOpen && <Basket basketItems={basketItems} />}
+      {isBasketOpen && <Styled.Overlay $isvisible={isBasketOpen} onClick={toggleBasket} />}
+
+      {isBasketOpen && <Basket onClose={toggleBasket} isBasketVisable={isBasketOpen} basketItems={basketItems} />}
     </Styled.Header>
   );
 };

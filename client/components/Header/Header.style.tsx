@@ -32,4 +32,16 @@ export const TotalQuantity = styled.div`
 
 export const Toggle = styled.a`
   position: relative;
+  cursor: pointer;
+`;
+
+export const Overlay = styled.div<{ $isvisible: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Behind the basket but above the rest of the content */
+  display: ${({ $isvisible }) => ($isvisible ? 'block' : 'none')};
 `;

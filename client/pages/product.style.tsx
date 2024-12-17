@@ -30,6 +30,16 @@ export const DescriptionWrapper = styled.div`
     background: ${({ theme }) => theme.colors.hemocyanin};
 `;
 
+export const DescriptionContainer = styled.div`
+  max-width: 1024px;
+  margin: 0 auto;
+`;
+
+export const SpecContainer = styled.div`
+  max-width: 1024px;
+  margin: 0 auto;
+`;
+
 export const PriceTxt = styled.p`
   font-size: 1.4rem;
 `;
@@ -79,7 +89,8 @@ export const TitleContainer = styled.div`
 export const ImageContainer = styled.div`
   padding: 5%;
   max-width: 500px;
-  justify-self: center;
+  width: 100%;
+  margin: 0 auto;
    @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 50%;
     padding: 0;
@@ -89,6 +100,8 @@ export const ImageContainer = styled.div`
 export const ErrorContainer = styled.div``;
 
 export const QtyWrapper = styled.div`
+  max-width: 1024px;
+  margin: 0 auto;
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     display: flex;
     padding: 5%;

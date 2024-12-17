@@ -116,39 +116,43 @@ export default function Product({ product }: ProductProps) {
         </div>
       </Styled.QtyWrapper>
       <Styled.DescriptionWrapper>
-        <h3>Description</h3>
-        <p>{product.description}</p>
+        <Styled.DescriptionContainer>
+          <h3>Description</h3>
+          <p>{product.description}</p>
+        </Styled.DescriptionContainer>
       </Styled.DescriptionWrapper>
       <Styled.SpecWrapper>
-        <h3>Specifications</h3>
-        <Styled.SpecList>
-          <Styled.SpecListItem>
-            <Styled.SpecTitle>Brand</Styled.SpecTitle>
-            <Styled.SpecValue>{product.brand}</Styled.SpecValue>
-          </Styled.SpecListItem>
-          <Styled.SpecListItem>
-            <Styled.SpecTitle>Item weight (g)</Styled.SpecTitle>
-            <Styled.SpecValue>{product.weight}</Styled.SpecValue>
-          </Styled.SpecListItem>
-          <Styled.SpecListItem>
-            <Styled.SpecTitle>Dimensions (cm)</Styled.SpecTitle>
-            <Styled.SpecValue>
-              {product.height} x {product.width} x {product.length}
-            </Styled.SpecValue>
-          </Styled.SpecListItem>
-          <Styled.SpecListItem>
-            <Styled.SpecTitle>Item Modal number</Styled.SpecTitle>
-            <Styled.SpecValue>
-              {product.model_code}
-            </Styled.SpecValue>
-          </Styled.SpecListItem>
-          <Styled.SpecListItem>
-            <Styled.SpecTitle>Colour</Styled.SpecTitle>
-            <Styled.SpecValue>
-              {product.colour}
-            </Styled.SpecValue>
-          </Styled.SpecListItem>
-        </Styled.SpecList>
+        <Styled.SpecContainer>
+          <h3>Specifications</h3>
+          <Styled.SpecList>
+            <Styled.SpecListItem>
+              <Styled.SpecTitle>Brand</Styled.SpecTitle>
+              <Styled.SpecValue>{product.brand}</Styled.SpecValue>
+            </Styled.SpecListItem>
+            <Styled.SpecListItem>
+              <Styled.SpecTitle>Item weight (g)</Styled.SpecTitle>
+              <Styled.SpecValue>{product.weight}</Styled.SpecValue>
+            </Styled.SpecListItem>
+            <Styled.SpecListItem>
+              <Styled.SpecTitle>Dimensions (cm)</Styled.SpecTitle>
+              <Styled.SpecValue>
+                {product.height} x {product.width} x {product.length}
+              </Styled.SpecValue>
+            </Styled.SpecListItem>
+            <Styled.SpecListItem>
+              <Styled.SpecTitle>Item Modal number</Styled.SpecTitle>
+              <Styled.SpecValue>
+                {product.model_code}
+              </Styled.SpecValue>
+            </Styled.SpecListItem>
+            <Styled.SpecListItem>
+              <Styled.SpecTitle>Colour</Styled.SpecTitle>
+              <Styled.SpecValue>
+                {product.colour}
+              </Styled.SpecValue>
+            </Styled.SpecListItem>
+          </Styled.SpecList>
+        </Styled.SpecContainer>
       </Styled.SpecWrapper>
     </div>
   );
