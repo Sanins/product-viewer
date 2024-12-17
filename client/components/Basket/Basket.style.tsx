@@ -19,7 +19,7 @@ const slideOut = keyframes`
 `;
 
 
-const BasketWrapper = styled.div<{ $isBasketVisable: boolean }>`
+export const BasketWrapper = styled.div<{ $isBasketVisable: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
@@ -31,16 +31,16 @@ const BasketWrapper = styled.div<{ $isBasketVisable: boolean }>`
   z-index: 1000; /* Above the overlay */
   transform: translateX(100%);
   animation: ${({ $isBasketVisable }) =>
-        $isBasketVisable ? slideIn : slideOut} 0.3s forwards;
+    $isBasketVisable ? slideIn : slideOut} 0.3s forwards;
 `;
 
-const BasketHeader = styled.div`
+export const BasketHeader = styled.div`
   padding: 1rem;
   background-color: ${({ theme }) => theme.colors.hemocyanin};
   border-bottom: 1px solid #ddd;
 `;
 
-const CloseBtn = styled.button`
+export const CloseBtn = styled.button`
     position: absolute;
     top: 10px;
     right: 10px;
@@ -50,12 +50,15 @@ const CloseBtn = styled.button`
     color: #fff;
 `;
 
-const BasketContent = styled.div`
+export const BasketContent = styled.div`
   padding: 1rem;
 `;
 
-const BasketItem = styled.li`
-  border-bottom: 1px solid #ddd;
+export const List = styled.ul`
+  list-style-type: none;
+`;
+
+export const BasketItem = styled.li`
   margin-bottom: 1rem;
   padding-bottom: 1rem;
 
@@ -64,16 +67,7 @@ const BasketItem = styled.li`
   }
 `;
 
-const EmptyBasketMessage = styled.p`
+export const EmptyBasketMessage = styled.p`
   text-align: center;
   margin-top: 2rem;
 `;
-
-export {
-    BasketWrapper,
-    BasketHeader,
-    BasketContent,
-    BasketItem,
-    CloseBtn,
-    EmptyBasketMessage,
-};

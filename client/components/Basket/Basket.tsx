@@ -1,13 +1,6 @@
 import React from 'react';
 import { Product } from '../../types';
-import {
-  BasketWrapper,
-  BasketHeader,
-  BasketContent,
-  BasketItem,
-  CloseBtn,
-  EmptyBasketMessage,
-} from './Basket.style';
+import * as Styled from './Basket.style';
 
 interface BasketProps {
   basketItems: Product[];
@@ -17,32 +10,32 @@ interface BasketProps {
 
 const Basket = ({ basketItems, isBasketVisable, onClose }: BasketProps) => {
   return (
-    <BasketWrapper $isBasketVisable={isBasketVisable}>
-      <BasketHeader>
+    <Styled.BasketWrapper $isBasketVisable={isBasketVisable}>
+      <Styled.BasketHeader>
         <h2>Your Basket</h2>
-      </BasketHeader>
-      <CloseBtn onClick={onClose}>
+      </Styled.BasketHeader>
+      <Styled.CloseBtn onClick={onClose}>
         x
-      </CloseBtn>
-      <BasketContent>
+      </Styled.CloseBtn>
+      <Styled.BasketContent>
         {basketItems.length === 0 ? (
-          <EmptyBasketMessage>Your basket is empty.</EmptyBasketMessage>
+          <Styled.EmptyBasketMessage>Your basket is empty.</Styled.EmptyBasketMessage>
         ) : (
-          <ul>
+          <Styled.List>
             {basketItems.map((item) => (
-              <BasketItem key={item.id}>
+              <Styled.BasketItem key={item.id}>
                 <div>
                   <h3>{item.name}</h3>
                   <p>Price: £{item.price.toFixed(2)}</p>
                   <p>Quantity: {item.quantity}</p>
                   <p>Total: £{(item.price * item.quantity).toFixed(2)}</p>
                 </div>
-              </BasketItem>
+              </Styled.BasketItem>
             ))}
-          </ul>
+          </Styled.List>
         )}
-      </BasketContent>
-    </BasketWrapper>
+      </Styled.BasketContent>
+    </Styled.BasketWrapper>
   );
 };
 
